@@ -123,3 +123,66 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .serv-info img {
+    width: 50px;
+    height:50px;
+    margin-right: 20px;
+  }
+  
+  .serv-header {
+    text-align: center;
+  }
+  
+  .serv-header h3 {
+    margin: 0;
+  }
+  
+  .serv-info {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .serv-info h4 {
+    margin: 0 20px 0 0;
+  }
+  
+  .serv-info p {
+    flex: 1;
+  }
+  
+  .serv-info button {
+    margin-left: 20px;
+  }
+  
+  .serv-content {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .serv-content-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .serv1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .serv-info p {
+    display: flex;
+    align-items: center;
+  }
+  
+  .serv-content img {
+    width: 100px;
+    margin-right: 20px;
+  }
