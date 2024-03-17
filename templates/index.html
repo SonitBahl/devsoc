@@ -13,10 +13,10 @@
     <header>
         <h2 class="logo">FarmWise</h2>
         <nav class="navigation">
-            <a href="#" class="active">Home</a>
-            <a href="#">About</a>
-            <a href="#">Service</a>
-            <a href="#">Contact</a>
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#serv">Service</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
@@ -32,39 +32,41 @@
        <img src="static/assets/plant.png" alt="plant" id="plant">
     </section>
 
-    <section class="sec">
+    <section class="sec" id="about">
         <h2>About the Product</h2>
-        <p>FarmWise is a groundbreaking project designed to revolutionize the way farmers make decisions about their fields. At its core, FarmWise leverages  machine learning algorithms to provide personalized recommendations to farmers, guiding them on the best agricultural practices and products tailored to their specific fields.
+        <p>FarmWise stands as a revolutionary project poised to transform traditional farming practices into data-driven, efficient operations. By amalgamating cutting-edge technology with agricultural expertise, FarmWise empowers farmers with personalized insights and recommendations, ensuring optimized yields, reduced costs, and sustainable land management practices.
+            At the heart of FarmWise lies its sophisticated employment of machine learning algorithms. These algorithms meticulously analyze vast datasets encompassing factors like soil composition, climate patterns, historical crop performance, and agronomic research. By discerning intricate patterns and correlations within this data, FarmWise generates actionable recommendations tailored to each farmer's unique circumstances.
         </p>
-        <a href="/form"><button>Fill out form</button></a>
     </section>
-    <section class="serv">
+    <section class="serv" id="serv">
         <div class="serv1">
           <div class="serv-header">
             <h3>Our Service</h3>
           </div>
           <div class="serv-content-wrapper">
             <div class="serv-info">
-                <h4>Basic<h4>
-                      <img src="static/assets/hill1.png">
-                <p>Discover how FarmWise can help you optimize your farming operations and increase your yields.</p>
-                <button>Learn More</button>
-              </div>
-          </div>
+                <h4>Basic</h4>
+                <img src="static/assets/sample_form.png">
+                <p>The Basic pack provides farmers with fundamental information such as their location, accurate rainfall predictions, soil type analysis, and recommendations for preferred crops based on optimal yield.
+                </p>
+                <a href="/form"><button>Fill out form</button></a>
+            </div>
             <div class="serv-info">
-                <h4>Basic<h4>
-                      <img src="static/assets/hill1.png">
-                <p>Discover how FarmWise can help you optimize your farming operations and increase your yields.</p>
-                <button>Learn More</button>
-              </div>
+                <h4>Premium</h4>
+                <img src="static/assets/sample_form.png">
+                <p>Our Premium pack includes on-site soil analysis by technicians to measure vital parameters such as Nitrogen, Phosphorus, Potassium, temperature, humidity, and pH levels.</p>
+                <a href="/"><button>Fill out form</button></a>
+            </div>
           </div>
         </div>
-      </section>
-    <footer class="foot">
+    </section>
+    <footer class="foot" id="contact">
         <div class="contact">
             <div class="aboutus">
-                At FarmWise, we're passionate about empowering farmers with the tools and knowledge they need to thrive. Our mission is to revolutionize agriculture by harnessing the power of data analytics and machine learning to provide personalized recommendations tailored to each farmer's unique needs. Whether it's optimizing crop selection, improving fertilization techniques, or managing pests more effectively, we're committed to helping farmers make informed decisions that drive productivity, profitability, and sustainability. Join us in shaping the future of farming with FarmWise
-            </div>
+                <br><br>
+                <p>At FarmWise, we're passionate about empowering farmers with the tools and knowledge they need to thrive. Our mission is to revolutionize agriculture by harnessing the power of data analytics and machine learning to provide personalized recommendations tailored to each farmer's unique needs. Whether it's optimizing crop selection, improving fertilization techniques, or managing pests more effectively, we're committed to helping farmers make informed decisions that drive productivity, profitability, and sustainability. Join us in shaping the future of farming with FarmWise
+                </p>
+                </div>
             <div class="copy">
                 <p>Copyright Ⓒ 2024 FarmWise. All Rights Reserved.</p>
             </div>
@@ -76,5 +78,23 @@
         </div>
     </footer>
     <script src="static/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navLinks = document.querySelectorAll('.navigation a');
+
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    const offsetTop = targetSection.offsetTop;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>

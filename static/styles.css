@@ -25,7 +25,7 @@ header {
     z-index: 100;
 }
 
-.logo{
+.logo {
     font-family: "Risque", serif;
     font-weight: 400;
     font-style: normal;
@@ -36,7 +36,7 @@ header {
     margin-left: -50px;
 }
 
-.navigation a{
+.navigation a {
     text-decoration: none;
     color: #359381;
     padding: 6px 15px;
@@ -46,20 +46,20 @@ header {
 }
 
 .navigation a:hover,
-.navigation a.active{
+.navigation a.active {
     background: #359381;
     color: #ffffff;
 }
 
-.parallax{
-    position:relative;
+.parallax {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-#text{
+#text {
     position: absolute;
     font-size: 5em;
     color: #ffffff;
@@ -81,25 +81,27 @@ header {
     padding: 100px;
 }
 
-.sec h2{
+.sec h2 {
     font-size: 3em;
     color: #ffffff;
     margin-bottom: 10px;
+    text-align: center;
 }
 
-.sec p{
+.sec p {
     font-size: 1em;
     color: #ffffff;
     font-weight: 300;
 }
+
 .foot {
     position: relative;
     height: 350px;
     background: black;
     color: white;
-  }
-  
-  .copy {
+}
+
+.copy {
     margin: 0 10px;
     display: flex;
     align-items: center;
@@ -107,80 +109,79 @@ header {
     bottom: 0;
     left: 0;
     margin-bottom: 10px;
-  }
-  
-  .cont {
+}
+
+.cont {
     position: absolute;
     bottom: 0;
     right: 0;
     margin-right: 20px;
     margin-bottom: 10px;
-  }
-  
-  .aboutus {
-    margin-top: 10px;
-    margin-left: 10;
-  }
-  .serv-info img {
-    width: 50px;
-    height:50px;
-    margin-right: 20px;
-  }
-  
-  .serv-header {
+}
+
+.aboutus p {
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
+.serv {
+    position: relative;
+    background: #003329;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.serv-header h3 {
+    font-size: 2em;
+    color: #ffffff;
     text-align: center;
-  }
-  
-  .serv-header h3 {
-    margin: 0;
-  }
-  
-  .serv-info {
+}
+
+.serv-content-wrapper {
     display: flex;
-    flex-wrap: nowrap;
-  }
-  
-  .serv-info h4 {
-    margin: 0 20px 0 0;
-  }
-  
-  .serv-info p {
+}
+
+.serv-info {
     flex: 1;
-  }
-  
-  .serv-info button {
-    margin-left: 20px;
-  }
-  
-  .serv-content {
-    display: flex;
-    flex-wrap: nowrap;
-  }
-  
-  .serv-content-wrapper {
-    display: flex;
-    flex-wrap: nowrap;
-  }
-  
-  .serv1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-  }
-  
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  .serv-info p {
-    display: flex;
-    align-items: center;
-  }
-  
-  .serv-content img {
-    width: 100px;
-    margin-right: 20px;
-  }
+    text-align: center;
+    padding: 20px;
+    margin: 0 10px;
+    background-color: #005c45;
+}
+
+.serv-info h4 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #ffffff;
+}
+
+.serv-info img {
+    width: 70%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.serv-info p {
+    font-size: 1em;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+.serv-info button {
+    padding: 10px 20px;
+    background-color: #359381;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.serv-info.premium {
+    background-color: #007a59;
+}
