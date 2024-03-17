@@ -33,6 +33,7 @@ header {
     color: #359381;
     pointer-events: none;
     margin-right: 300px;
+    margin-left: -50px;
 }
 
 .navigation a{
