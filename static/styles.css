@@ -191,3 +191,12 @@ header {
 .serv-info.premium {
     background-color: #007a59;
 }
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-in.active {
+    opacity: 1;
+}
