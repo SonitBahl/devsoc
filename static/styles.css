@@ -244,3 +244,8 @@ transform: rotateY(180deg);
     width:65%;
     margin-top:20px;
 }
+
+.buttona{
+    text-decoration: none;
+    color: #000;
+}
