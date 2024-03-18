@@ -21,10 +21,8 @@ body {
   position: relative;
   max-width: 1300px;
   width: 100%;
-  
   padding: 25px;
   border-radius: 8px;
-  
 }
 
 .container .form {
@@ -67,6 +65,7 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   background: rgb(130, 106, 251);
+  margin-left:20px;
 }
 .form button:hover {
   background: rgb(88, 56, 250);
@@ -79,4 +78,14 @@ body {
     flex-wrap: wrap;
   }
   
+}
+.con{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.but{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
