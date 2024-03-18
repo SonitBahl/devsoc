@@ -1,0 +1,12 @@
+{
+    "diseases": [
+        "applecedarrust",
+        "applescab",
+        "corncommonrust",
+        "potatoearlyblight",
+        "potatohealthy",
+        "tomatoearlyblight",
+        "tomatohealthy",
+        "tomatoyellowcurlvirus"
+    ]
+}

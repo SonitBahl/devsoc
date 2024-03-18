@@ -1,11 +1,41 @@
+<!-- disease.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Disease Detection</title>
 </head>
 <body>
-    
+    <h1>Disease Detection</h1>
+    <form id="diseaseForm" action="/make_prediction_disease" method="post" enctype="multipart/form-data">
+        <label for="image">Upload an image:</label><br>
+        <input type="file" id="image" name="image" accept="image/*"><br><br>
+        <button type="submit">Predict</button>
+    </form>
+    <div id="result"></div> <!-- Placeholder for displaying result -->
+    <script>
+        // Handle form submission and display result
+        document.getElementById('diseaseForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var formData = new FormData(this); // Create form data object
+            fetch('/make_prediction_disease', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json()) // Parse response as JSON
+            .then(data => {
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                } else {
+                    document.getElementById('result').innerText = 'Predicted disease: ' + data.predicted_disease;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 </html>

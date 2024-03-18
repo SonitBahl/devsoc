@@ -1,48 +1,21 @@
-from flask import Flask, render_template, request, redirect, url_for
-import joblib
+# app.py
+
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+import tensorflow as tf
 import numpy as np
-from sklearn.preprocessing import LabelEncoder
+from PIL import Image
+import io
+import json
 
 app = Flask(__name__)
 
-# Load the pre-trained model and other necessary data
-# Load the pre-trained model
-clf = joblib.load('decision_tree_model.joblib')
+# Load the trained model
+model = tf.keras.models.load_model('model.h5')
 
-# Load the label encoder
-try:
-    label_encoder = joblib.load('label_encoder.joblib')
-except FileNotFoundError:
-    label_encoder = LabelEncoder()  # Create a new label encoder if file not found
-
-# Load the state averages
-state_averages = {}
-
-try:
-    loaded_state_averages = joblib.load('state_average.joblib')
-    if isinstance(loaded_state_averages, dict):
-        state_averages = loaded_state_averages
-    else:
-        raise ValueError("State averages should be loaded as a dictionary.")
-except FileNotFoundError:
-    print("State average file not found.")
-except Exception as e:
-    print("Error loading state averages:", e)
-
-# Function to encode labels, handling unseen labels
-def encode_label(label):
-    global label_encoder
-    try:
-        return label_encoder.transform([label])[0]
-    except ValueError:
-        # Fit label encoder with the new label
-        if label not in label_encoder.classes_:
-            label_encoder.fit([label])
-        return label_encoder.transform([label])[0]
-
-# Function to decode encoded labels
-def decode_label(encoded_label):
-    return label_encoder.inverse_transform([encoded_label])[0]
+# Load disease names from JSON file
+with open('disease_names.json') as f:
+    disease_data = json.load(f)
+disease_names = disease_data['diseases']
 
 @app.route('/')
 def index():
@@ -76,6 +49,36 @@ def predict_disease():
 def result_page():
     # Render the result template with appropriate data
     return render_template('result.html')
+
+@app.route('/make_prediction_disease', methods=['POST'])
+def make_prediction_disease():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image provided'})
+    
+    image_file = request.files['image']
+    if image_file.filename == '':
+        return jsonify({'error': 'No image selected'})
+    
+    try:
+        # Read the image file and preprocess it
+        image = Image.open(io.BytesIO(image_file.read()))
+        image = image.resize((100, 100))  # Resize image to match model input shape
+        image = np.array(image) / 255.0  # Normalize pixel values
+        image = np.expand_dims(image, axis=0)  # Add batch dimension
+    except Exception as e:
+        return jsonify({'error': str(e)})
+    
+    try:
+        # Make prediction using the loaded model
+        predictions = model.predict(image)
+        predicted_class = np.argmax(predictions)
+        if predicted_class < len(disease_names):
+            predicted_disease = disease_names[predicted_class]
+            return jsonify({'predicted_disease': predicted_disease})
+        else:
+            return jsonify({'error': 'Invalid predicted class index'})
+    except Exception as e:
+        return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
