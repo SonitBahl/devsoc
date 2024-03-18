@@ -15,7 +15,6 @@ try:
     label_encoder = joblib.load('label_encoder.joblib')
 except FileNotFoundError:
     label_encoder = LabelEncoder()  # Create a new label encoder if file not found
-label_encoder = joblib.load('label_encoder.joblib')
 
 # Load the state averages
 state_averages = {}
@@ -34,17 +33,17 @@ except Exception as e:
 # Function to encode labels, handling unseen labels
 def encode_label(label):
     global label_encoder
-    if label in label_encoder.classes_:
+    try:
         return label_encoder.transform([label])[0]
-    else:
-        label_encoder.fit([label])
+    except ValueError:
+        # Fit label encoder with the new label
+        if label not in label_encoder.classes_:
+            label_encoder.fit([label])
         return label_encoder.transform([label])[0]
 
 # Function to decode encoded labels
 def decode_label(encoded_label):
     return label_encoder.inverse_transform([encoded_label])[0]
-state_averages = joblib.load('state_average.joblib')
-
 
 @app.route('/')
 def index():
@@ -71,6 +70,9 @@ def predict():
     
     # Make prediction
     predicted_crop = clf.predict([[input_state_encoded, state_average]])
+    
+    # Remove the label from the encoder
+    label_encoder.classes_ = np.delete(label_encoder.classes_, np.where(label_encoder.classes_ == input_state_encoded))
     
     # Render result template with predicted crop
     return render_template('result.html', crop=predicted_crop[0])
