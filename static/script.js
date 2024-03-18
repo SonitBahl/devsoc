@@ -15,4 +15,16 @@ window.addEventListener('scroll', () => {
     hill5.style.left = adjustedScrollValue * 0.5 + 'px';
     hill4.style.left = adjustedScrollValue * -0.5 + 'px';
     hill1.style.top = adjustedScrollValue * 0.25 + 'px';
+
+    let aboutSection = document.querySelector('.sec');
+    let sectionTop = aboutSection.offsetTop;
+    let sectionBottom = sectionTop + aboutSection.offsetHeight;
+    let windowBottom = window.pageYOffset + window.innerHeight;
+    if (windowBottom > sectionTop && window.pageYOffset < sectionBottom) {
+        document.querySelector('.sec h2').style.transform = 'translateX(0)';
+        document.querySelector('.sec p').style.transform = 'translateX(0)';
+    } else {
+        document.querySelector('.sec h2').style.transform = 'translateX(-200%)';
+        document.querySelector('.sec p').style.transform = 'translateX(200%)';
+    }
 });

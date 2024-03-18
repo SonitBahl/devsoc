@@ -65,6 +65,8 @@ header {
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     letter-spacing: 5px;
+    margin-top: 0;
+    transition: margin-top 0.3s ease;
 }
 
 .parallax img {
@@ -86,12 +88,16 @@ header {
     color: #ffffff;
     margin-bottom: 10px;
     text-align: center;
+    transform: translateX(-200%);
+    transition: transform 1.5s ease; 
 }
 
 .sec p {
     font-size: 1em;
     color: #ffffff;
     font-weight: 300;
+    transform: translateX(200%);
+    transition: transform 1.5s ease;
 }
 
 .foot {
