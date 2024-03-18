@@ -18,12 +18,30 @@
         h2 {
             text-align: center;
         }
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Predicted Crop</h2>
         <p>The predicted crop for the given state and rainfall is: <strong>{{ crop }}</strong></p>
+        <a href="/" class="btn">Return to Home Page</a>
     </div>
 </body>
 </html>

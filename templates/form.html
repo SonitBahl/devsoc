@@ -13,7 +13,7 @@
   <form id="stateDistrictForm" method="post" action="/submit">
     <div class="form-group">
       <label for="state">State:</label>
-      <select id="state" onchange="populateCities()">
+      <select id="state" name="selectedState" onchange="populateCities()">
         <option value="none">Select</option>
         <option value="AndhraPradesh">Andhra Pradesh</option>
         <option value="ArunachalPradesh">Arunachal Pradesh</option>
@@ -65,6 +65,7 @@
   </form>
 </div>
 <script>
+
   // JavaScript to populate cities based on the selected state
   function populateCities() {
     var stateSelect = document.getElementById("state");
