@@ -7,13 +7,13 @@ import joblib
 app = Flask(__name__)
 
 # Load the pre-trained model
-clf = joblib.load('devsoc/decision_tree_model.joblib')
+clf = joblib.load('decision_tree_model.joblib')
 
 # Load the label encoder
-label_encoder = joblib.load('devsoc/label_encoder.joblib')
+label_encoder = joblib.load('label_encoder.joblib')
 
 # Load the state averages
-state_averages = joblib.load('devsoc/state_average.joblib')
+state_averages = joblib.load('state_average.joblib')
 
 
 @app.route('/')
