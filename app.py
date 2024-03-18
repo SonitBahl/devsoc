@@ -15,6 +15,7 @@ try:
     label_encoder = joblib.load('label_encoder.joblib')
 except FileNotFoundError:
     label_encoder = LabelEncoder()  # Create a new label encoder if file not found
+label_encoder = joblib.load('label_encoder.joblib')
 
 # Load the state averages
 state_averages = {}
@@ -42,6 +43,8 @@ def encode_label(label):
 # Function to decode encoded labels
 def decode_label(encoded_label):
     return label_encoder.inverse_transform([encoded_label])[0]
+state_averages = joblib.load('state_average.joblib')
+
 
 @app.route('/')
 def index():
