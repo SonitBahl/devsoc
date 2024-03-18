@@ -10,7 +10,7 @@
 <body>
 
 <div class="container">
-  <form id="stateDistrictForm">
+  <form id="stateDistrictForm" method="post" action="/submit">
     <div class="form-group">
       <label for="state">State:</label>
       <select id="state" onchange="populateCities()">
@@ -59,9 +59,9 @@
         <option value="none">Select State First</option>
       </select>
     </div>
-    <span class="submit"><a href="#"></a></span>
+    <button type="submit">Submit</button>
 
-    <span><a href="#"></a></span>
+    <span><a href="/"></a></span>
   </form>
 </div>
 <script>
@@ -181,20 +181,21 @@
         cities = ["Select","Central Delhi","East Delhi","New Delhi","North Delhi","North East Delhi","North West Delhi","Shahdara","South Delhi","South East Delhi","South West Delhi","West Delhi"];
         break;
       case "Lakshadweep":
-        cities = ["Select","Lakshadweep"];
+        cities = ["Select","Agatti Island","Amini","Andrott","Bitra","Chetlat","Kadmat","Kalpeni","Kavaratti","Kiltan","Minicoy"];
         break;
       case "Puducherry":
-        cities = ["Select","Karaikal","Mahe","Pondicherry","Yanam"];
+        cities = ["Select","Karaikal","Mahe","Puducherry","Yanam"];
         break;
       default:
-        cities = ["Select","Select State First"];
+        cities = ["Select"];
         break;
     }
-   
+    
     // Populate city dropdown
     cities.forEach(function(city) {
       var option = document.createElement("option");
       option.text = city;
+      option.value = city.toLowerCase();
       citySelect.add(option);
     });
     
@@ -202,6 +203,5 @@
     citySelect.disabled = false;
   }
 </script>
-
 </body>
 </html>
