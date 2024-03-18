@@ -1,12 +1,11 @@
-from flask import Flask, render_template, request
-import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.preprocessing import LabelEncoder
+from flask import Flask, render_template, request, redirect, url_for
 import joblib
 import numpy as np
+from sklearn.preprocessing import LabelEncoder
 
 app = Flask(__name__)
 
+# Load the pre-trained model and other necessary data
 # Load the pre-trained model
 clf = joblib.load('decision_tree_model.joblib')
 
@@ -49,33 +48,34 @@ def decode_label(encoded_label):
 def index():
     return render_template('index.html')
 
-
 @app.route('/form')
 def form():
     return render_template('form.html')
 
+@app.route('/form1')
+def form1():
+    return render_template('form1.html')
+
+@app.route('/disease_form')
+def disease_form():
+    return render_template('disease.html')
 
 @app.route('/submit', methods=['POST'])
 def predict():
-    # Extract form data
-    input_state = request.form.get('selectedState', '').upper()
-    
-    print("Received state:", input_state)  # Print received state for debugging
-    
-    # Encode input state
-    input_state_encoded = encode_label(input_state)
+    # Extract form data and perform prediction logic for crop recommendation
+    # Redirect to the result page or any other page after crop prediction
+    return redirect(url_for('result_page'))
 
-    # Use precalculated state average rainfall
-    state_average = state_averages.get(input_state, 0.0)  # Default to 0 if state not found
-    
-    # Make prediction
-    predicted_crop = clf.predict([[input_state_encoded, state_average]])
-    
-    # Remove the label from the encoder
-    label_encoder.classes_ = np.delete(label_encoder.classes_, np.where(label_encoder.classes_ == input_state_encoded))
-    
-    # Render result template with predicted crop
-    return render_template('result.html', crop=predicted_crop[0])
+@app.route('/submit_disease', methods=['POST'])
+def predict_disease():
+    # Extract form data and perform prediction logic for disease detection
+    # Redirect to the result page or any other page after disease prediction
+    return redirect(url_for('result_page'))
+
+@app.route('/result')
+def result_page():
+    # Render the result template with appropriate data
+    return render_template('result.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
