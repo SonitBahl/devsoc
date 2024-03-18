@@ -34,8 +34,6 @@ def make_predictions(classifier, user_input):
 
 def main():
     dataset = pd.read_csv(r'C:/Users/prakh/Desktop/devsoc ml model/good models/crop_recommendation/Crop_recommendation.csv')
-
-    # Divide the dataset into features and labels
     X = dataset.iloc[:, :-1].values
     y = dataset.iloc[:, -1].values
 
